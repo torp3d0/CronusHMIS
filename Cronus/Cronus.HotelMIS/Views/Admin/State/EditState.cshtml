@@ -1,0 +1,49 @@
+﻿
+@model Cronus.HotelMIS.Models.StateModel
+
+@{
+   
+    ViewBag.Title = "Edit State";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">@Model.Country.CountryName State Form</h3>
+            </div>
+
+            @using (Html.BeginForm("EditState", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.StateID)
+                <div class="box-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StateName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.StateName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StateName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    @Html.ActionLink("Back to List", "States", null, new { @class = "btn btn-default" })
+                    <button type="submit" class="btn btn-info pull-right">Create</button>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+

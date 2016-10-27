@@ -1,0 +1,108 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using Cronus.HotelMIS.Models
+
+@{
+    StateModel State = ViewBag.State;
+    ViewBag.Title = "Cities";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="q" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Go!</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="@Url.Action("NewCities")" class="btn btn-sm btn-info btn-flat pull-right"><i class="fa fa-plus"></i> Country</a>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>City Name </th>
+                                <th>State</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (CityModel item in ViewBag.Cities)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CityID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CityName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.State.StateName)
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("EditCountry" ,new {id =item.CityID})" class="btn btn-xs btn-info"><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="@Url.Action("RemoveCountry",new {id =item.CityID})" class="btn btn-xs btn-danger btn-remove-country"><i class="fa fa-remove"></i> Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager((IPagedList)ViewBag.Cities, page => Url.Action("Cities", new { page, q = ViewBag.Keyword, id = State.StateCountryID, stateId = State.StateID }))
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+
+            <!-- /.box-footer -->
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btn-remove-country').on('click', function () {
+                var _this = $(this);
+                if (confirm('Are you sure to remove this country?')) {
+
+                    $.ajax($(this).attr('href'))
+                      .done(function (data) {
+                          if (data.success) {
+                              _this.parent().parent().parent().remove();
+                          } else {
+                              alert("error");
+                          }
+                      })
+                      .fail(function () {
+                          alert("error");
+                      })
+                      ;
+                }
+                return false;
+            })
+
+        })
+    </script>
+}
+

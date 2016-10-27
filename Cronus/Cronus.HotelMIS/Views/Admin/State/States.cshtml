@@ -1,0 +1,115 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using Cronus.HotelMIS.Models
+
+@{
+    CountryModel Country = ViewBag.Country;
+    ViewBag.Title = @Country.CountryName + " States";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="q" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">Go!</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="@Url.Action("NewState")" class="btn btn-sm btn-info btn-flat pull-right"><i class="fa fa-plus"></i> @Country.CountryName State</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>State Name </th>
+                                    <th>Country Name</th>
+                                    <th>Country Code</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @foreach (StateModel item in ViewBag.States)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StateID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StateName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Country.CountryCode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Country.CountryName)
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="@Url.Action("Cities",new {id =item.StateCountryID ,stateId=item.StateID})" class="btn btn-xs btn-primary"><i class="fa fa-map"></i> Cities</a>
+                                                <a href="@Url.Action("EditState" ,new {id =item.StateCountryID ,stateId=item.StateID})" class="btn btn-xs btn-info"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="@Url.Action("RemoveState",new {id =item.StateCountryID ,stateId=item.StateID})" class="btn btn-xs btn-danger btn-remove-country"><i class="fa fa-remove"></i> Delete</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        @Html.PagedListPager((IPagedList)ViewBag.States, page => Url.Action("States", new { page, q = ViewBag.Keyword, id = Country.CountryID}))
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+
+                <!-- /.box-footer -->
+            </div>
+        </div>
+
+    </div>
+    @section scripts{
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btn-remove-country').on('click', function () {
+                var _this = $(this);
+                if (confirm('Are you sure to remove this country?')) {
+
+                    $.ajax($(this).attr('href'))
+                      .done(function (data) {
+                          if (data.success) {
+                              _this.parent().parent().parent().remove();
+                          } else {
+                              alert("error");
+                          }
+                      })
+                      .fail(function () {
+                          alert("error");
+                      })
+                      ;
+                }
+                return false;
+            })
+
+        })
+        </script>
+    }
+
+
+

@@ -1,0 +1,1266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CronusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BusinessSource">
+          <Key>
+            <PropertyRef Name="BusinessSourceID" />
+          </Key>
+          <Property Name="BusinessSourceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessSourceName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BusinessSourceAddedBy" Type="int" />
+          <Property Name="BusinessSourceAddedDate" Type="datetime" />
+          <Property Name="BusinessSourceEditedBy" Type="int" />
+          <Property Name="BusinessSourceEditedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="50" />
+          <Property Name="CityStateID" Type="int" />
+          <Property Name="CityAddedBy" Type="int" />
+          <Property Name="CityAddedDate" Type="datetime" />
+          <Property Name="CityEditedBy" Type="int" />
+          <Property Name="CityEditedDate" Type="datetime" />
+          <Property Name="CityIsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryAddedBy" Type="int" />
+          <Property Name="CountryAddedDate" Type="datetime" />
+          <Property Name="CountryEditedBy" Type="int" />
+          <Property Name="CountryEditedDate" Type="datetime" />
+          <Property Name="CountryIsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Folio">
+          <Key>
+            <PropertyRef Name="FolioID" />
+          </Key>
+          <Property Name="FolioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FolioHotelID" Type="int" />
+          <Property Name="FolioCode" Type="varchar" MaxLength="20" />
+          <Property Name="FolioGuestID" Type="int" />
+          <Property Name="FolioReservationID" Type="int" />
+          <Property Name="FolioDateIN" Type="datetime" Nullable="false" />
+          <Property Name="FolioDateOUT" Type="datetime" Nullable="false" />
+          <Property Name="FolioNotes" Type="text" />
+          <Property Name="FolioAddedBy" Type="int" />
+          <Property Name="FolioAddedDate" Type="datetime" />
+          <Property Name="FolioEditedBy" Type="int" />
+          <Property Name="FolioEditedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FolioDetails">
+          <Key>
+            <PropertyRef Name="FolioDetailID" />
+          </Key>
+          <Property Name="FolioDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FolioID" Type="int" Nullable="false" />
+          <Property Name="FolioDetailRoomID" Type="int" />
+          <Property Name="FolioDetailRoomRateID" Type="int" />
+          <Property Name="FolioDetailAddedBy" Type="int" />
+          <Property Name="FolioDetailAddedDate" Type="datetime" />
+          <Property Name="FolioDetailEditedBy" Type="int" />
+          <Property Name="FolioDetailEditedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GuestTitle" Type="varchar" MaxLength="10" />
+          <Property Name="GuestFirstName" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="GuestMiddleName" Type="varchar" MaxLength="80" />
+          <Property Name="GuestLastName" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="GuestGender" Type="varchar" MaxLength="10" />
+          <Property Name="GuestEmailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="GuestHandPhone" Type="varchar" MaxLength="50" />
+          <Property Name="GuestTelPhone" Type="varchar" MaxLength="50" />
+          <Property Name="GuestFaxNumber" Type="varchar" MaxLength="50" />
+          <Property Name="GuestIDType" Type="int" />
+          <Property Name="GuestIDTypeNumber" Type="varchar" MaxLength="50" />
+          <Property Name="GuestAddress" Type="varchar" MaxLength="250" />
+          <Property Name="GuestCountryID" Type="int" />
+          <Property Name="GuestAddedBy" Type="int" />
+          <Property Name="GuestAddedDate" Type="datetime" />
+          <Property Name="GuestEditedBy" Type="int" />
+          <Property Name="GuestEditedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cronus.dbo.Hotel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelID" />
+            <PropertyRef Name="HotelName" />
+          </Key>
+          <Property Name="HotelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="HotelAltName" Type="varchar" MaxLength="250" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="250" />
+          <Property Name="Street" Type="varchar" MaxLength="250" />
+          <Property Name="State" Type="varchar" MaxLength="250" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="PostCode" Type="varchar" MaxLength="10" />
+          <Property Name="Telephone" Type="varchar" MaxLength="100" />
+          <Property Name="Fax" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="250" />
+          <Property Name="Web" Type="varchar" MaxLength="250" />
+          <Property Name="Registration" Type="varchar" MaxLength="250" />
+          <Property Name="TaxID1" Type="varchar" MaxLength="250" />
+          <Property Name="TaxID2" Type="varchar" MaxLength="250" />
+          <Property Name="LogoFileURL" Type="varchar" MaxLength="250" />
+          <Property Name="Latitude" Type="varchar" MaxLength="15" />
+          <Property Name="Longitude" Type="varchar" MaxLength="15" />
+          <Property Name="CheckInTime" Type="time" Precision="7" />
+          <Property Name="CheckOutTime" Type="time" Precision="7" />
+          <Property Name="NextDayCutOff" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="IDType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDAddedBy" Type="int" />
+          <Property Name="IDAddedDate" Type="datetime" />
+          <Property Name="IDEditedBy" Type="int" />
+          <Property Name="IDEditedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Cronus.dbo.RoomChargeType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RoomChargeType">
+          <Key>
+            <PropertyRef Name="RoomChargeTypeID" />
+          </Key>
+          <Property Name="RoomChargeTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomChargeTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="RoomChargeTypeAddedBy" Type="int" />
+          <Property Name="RoomChargeTypeAddedDate" Type="datetime" />
+          <Property Name="RoomChargeTypeEditedBy" Type="int" />
+          <Property Name="RoomChargeTypeEditedDate" Type="datetime" />
+          <Property Name="RoomChargeTypeIsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="RoomRates">
+          <Key>
+            <PropertyRef Name="RoomRateID" />
+          </Key>
+          <Property Name="RoomRateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomRateHotelID" Type="int" />
+          <Property Name="RoomRateCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoomRateDescription" Type="varchar" MaxLength="250" />
+          <Property Name="RoomRateRoomTypeID" Type="int" />
+          <Property Name="RoomRateDateStart" Type="datetime" />
+          <Property Name="RoomRateDateEnd" Type="datetime" />
+          <Property Name="RoomRateMinNights" Type="int" />
+          <Property Name="RoomRateMaxNights" Type="int" />
+          <Property Name="RoomRateMinPerson" Type="int" />
+          <Property Name="RoomRateMaxPerson" Type="int" />
+          <Property Name="RoomRateIsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomHotelID" Type="int" />
+          <Property Name="RoomCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RoomFloor" Type="int" />
+          <Property Name="RoomTypeId" Type="int" Nullable="false" />
+          <Property Name="RoomStatusId" Type="int" Nullable="false" />
+          <Property Name="RoomAddedBy" Type="int" />
+          <Property Name="RoomAddedDate" Type="datetime" />
+          <Property Name="RoomEditedBy" Type="int" />
+          <Property Name="RoomEditedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RoomStatus">
+          <Key>
+            <PropertyRef Name="RoomStatusID" />
+          </Key>
+          <Property Name="RoomStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomsStatusName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoomStatusAddedBy" Type="int" />
+          <Property Name="RoomStatusAddedDate" Type="datetime" />
+          <Property Name="RoomStatusEditedBy" Type="int" />
+          <Property Name="RoomStatusEditedDate" Type="datetime" />
+          <Property Name="RoomStatusIsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="RoomType">
+          <Key>
+            <PropertyRef Name="RoomTypeID" />
+          </Key>
+          <Property Name="RoomTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomTypeHotelID" Type="int" />
+          <Property Name="RoomTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="RoomTypeDescription" Type="varchar" MaxLength="250" />
+          <Property Name="RoomTypeAddedBy" Type="int" />
+          <Property Name="RoomTypeAddedDate" Type="datetime" />
+          <Property Name="RoomTypeEditedBy" Type="int" />
+          <Property Name="RoomTypeEditedDate" Type="datetime" />
+          <Property Name="RoomTypeIsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salutation">
+          <Key>
+            <PropertyRef Name="SalutationID" />
+          </Key>
+          <Property Name="SalutationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SalutationDescription" Type="varchar" MaxLength="50" />
+          <Property Name="SalutationIsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" />
+          <Property Name="StateCountryID" Type="int" />
+          <Property Name="StateAddedBy" Type="int" />
+          <Property Name="StateAddedDate" Type="datetime" />
+          <Property Name="StateEditedBy" Type="int" />
+          <Property Name="StateEditedDate" Type="datetime" />
+          <Property Name="StateIsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="UserPasswordSalt" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="UserFirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserLastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserMiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="UserToken" Type="varchar" MaxLength="250" />
+          <Property Name="UserAddedBy" Type="int" />
+          <Property Name="UserAddedDate" Type="datetime" />
+          <Property Name="UserEditedBy" Type="int" />
+          <Property Name="UserEditedDate" Type="datetime" />
+          <Property Name="UserStatus" Type="varchar" MaxLength="15" />
+          <Property Name="UserIsActive" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UserTypes">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+          <Property Name="UserIsActive" Type="bit" />
+          <Property Name="UserAddedBy" Type="int" />
+          <Property Name="UserAddedDate" Type="datetime" />
+          <Property Name="UserEditedBy" Type="int" />
+          <Property Name="UserEditedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Cities_States">
+          <End Role="States" Type="Self.States" Multiplicity="0..1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="CityStateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Folio_Guest">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="0..1" />
+          <End Role="Folio" Type="Self.Folio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="Folio">
+              <PropertyRef Name="FolioGuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FolioDetails_Folio">
+          <End Role="Folio" Type="Self.Folio" Multiplicity="1" />
+          <End Role="FolioDetails" Type="Self.FolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Folio">
+              <PropertyRef Name="FolioID" />
+            </Principal>
+            <Dependent Role="FolioDetails">
+              <PropertyRef Name="FolioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FolioDetails_RoomRates">
+          <End Role="RoomRates" Type="Self.RoomRates" Multiplicity="0..1" />
+          <End Role="FolioDetails" Type="Self.FolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomRates">
+              <PropertyRef Name="RoomRateID" />
+            </Principal>
+            <Dependent Role="FolioDetails">
+              <PropertyRef Name="FolioDetailRoomRateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FolioDetails_Rooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+          <End Role="FolioDetails" Type="Self.FolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="FolioDetails">
+              <PropertyRef Name="FolioDetailRoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomRates_RoomType">
+          <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1" />
+          <End Role="RoomRates" Type="Self.RoomRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="RoomTypeID" />
+            </Principal>
+            <Dependent Role="RoomRates">
+              <PropertyRef Name="RoomRateRoomTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooms_RoomStatus">
+          <End Role="RoomStatus" Type="Self.RoomStatus" Multiplicity="1" />
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStatus">
+              <PropertyRef Name="RoomStatusID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="RoomStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooms_RoomType">
+          <End Role="RoomType" Type="Self.RoomType" Multiplicity="1" />
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="RoomTypeID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="RoomTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_States_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="States" Type="Self.States" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="States">
+              <PropertyRef Name="StateCountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserTypes">
+          <End Role="UserTypes" Type="Self.UserTypes" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypes">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CronusModelStoreContainer">
+          <EntitySet Name="BusinessSource" EntityType="Self.BusinessSource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Folio" EntityType="Self.Folio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FolioDetails" EntityType="Self.FolioDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IDType" EntityType="Self.IDType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomRates" EntityType="Self.RoomRates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomStatus" EntityType="Self.RoomStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salutation" EntityType="Self.Salutation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Hotel].[HotelID] AS [HotelID], 
+    [Hotel].[HotelName] AS [HotelName], 
+    [Hotel].[HotelAltName] AS [HotelAltName], 
+    [Hotel].[CompanyName] AS [CompanyName], 
+    [Hotel].[Street] AS [Street], 
+    [Hotel].[State] AS [State], 
+    [Hotel].[CityID] AS [CityID], 
+    [Hotel].[CountryID] AS [CountryID], 
+    [Hotel].[PostCode] AS [PostCode], 
+    [Hotel].[Telephone] AS [Telephone], 
+    [Hotel].[Fax] AS [Fax], 
+    [Hotel].[Email] AS [Email], 
+    [Hotel].[Web] AS [Web], 
+    [Hotel].[Registration] AS [Registration], 
+    [Hotel].[TaxID1] AS [TaxID1], 
+    [Hotel].[TaxID2] AS [TaxID2], 
+    [Hotel].[LogoFileURL] AS [LogoFileURL], 
+    [Hotel].[Latitude] AS [Latitude], 
+    [Hotel].[Longitude] AS [Longitude], 
+    [Hotel].[CheckInTime] AS [CheckInTime], 
+    [Hotel].[CheckOutTime] AS [CheckOutTime], 
+    [Hotel].[NextDayCutOff] AS [NextDayCutOff]
+    FROM [dbo].[Hotel] AS [Hotel]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RoomChargeType" EntityType="Self.RoomChargeType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RoomChargeType].[RoomChargeTypeID] AS [RoomChargeTypeID], 
+    [RoomChargeType].[RoomChargeTypeName] AS [RoomChargeTypeName], 
+    [RoomChargeType].[RoomChargeTypeAddedBy] AS [RoomChargeTypeAddedBy], 
+    [RoomChargeType].[RoomChargeTypeAddedDate] AS [RoomChargeTypeAddedDate], 
+    [RoomChargeType].[RoomChargeTypeEditedBy] AS [RoomChargeTypeEditedBy], 
+    [RoomChargeType].[RoomChargeTypeEditedDate] AS [RoomChargeTypeEditedDate], 
+    [RoomChargeType].[RoomChargeTypeIsActive] AS [RoomChargeTypeIsActive]
+    FROM [dbo].[RoomChargeType] AS [RoomChargeType]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Cities_States" Association="Self.FK_Cities_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Folio_Guest" Association="Self.FK_Folio_Guest">
+            <End Role="Guest" EntitySet="Guest" />
+            <End Role="Folio" EntitySet="Folio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FolioDetails_Folio" Association="Self.FK_FolioDetails_Folio">
+            <End Role="Folio" EntitySet="Folio" />
+            <End Role="FolioDetails" EntitySet="FolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FolioDetails_RoomRates" Association="Self.FK_FolioDetails_RoomRates">
+            <End Role="RoomRates" EntitySet="RoomRates" />
+            <End Role="FolioDetails" EntitySet="FolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FolioDetails_Rooms" Association="Self.FK_FolioDetails_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="FolioDetails" EntitySet="FolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomRates_RoomType" Association="Self.FK_RoomRates_RoomType">
+            <End Role="RoomType" EntitySet="RoomType" />
+            <End Role="RoomRates" EntitySet="RoomRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooms_RoomStatus" Association="Self.FK_Rooms_RoomStatus">
+            <End Role="RoomStatus" EntitySet="RoomStatus" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooms_RoomType" Association="Self.FK_Rooms_RoomType">
+            <End Role="RoomType" EntitySet="RoomType" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_States_Countries" Association="Self.FK_States_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="States" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserTypes" Association="Self.FK_Users_UserTypes">
+            <End Role="UserTypes" EntitySet="UserTypes" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CronusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BusinessSource">
+          <Key>
+            <PropertyRef Name="BusinessSourceID" />
+          </Key>
+          <Property Name="BusinessSourceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessSourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BusinessSourceAddedBy" Type="Int32" />
+          <Property Name="BusinessSourceAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="BusinessSourceEditedBy" Type="Int32" />
+          <Property Name="BusinessSourceEditedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CityStateID" Type="Int32" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Cities_States" FromRole="Cities" ToRole="States" />
+          <Property Name="CityAddedBy" Type="Int32" />
+          <Property Name="CityAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="CityEditedBy" Type="Int32" />
+          <Property Name="CityEditedDate" Type="DateTime" Precision="3" />
+          <Property Name="CityIsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="States" Relationship="Self.FK_States_Countries" FromRole="Countries" ToRole="States" />
+          <Property Name="CountryAddedBy" Type="Int32" />
+          <Property Name="CountryAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="CountryEditedBy" Type="Int32" />
+          <Property Name="CountryEditedDate" Type="DateTime" Precision="3" />
+          <Property Name="CountryIsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Folio">
+          <Key>
+            <PropertyRef Name="FolioID" />
+          </Key>
+          <Property Name="FolioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FolioHotelID" Type="Int32" />
+          <Property Name="FolioCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FolioGuestID" Type="Int32" />
+          <Property Name="FolioReservationID" Type="Int32" />
+          <Property Name="FolioDateIN" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FolioDateOUT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FolioNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FolioAddedBy" Type="Int32" />
+          <Property Name="FolioAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="FolioEditedBy" Type="Int32" />
+          <Property Name="FolioEditedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Guest" Relationship="Self.FK_Folio_Guest" FromRole="Folio" ToRole="Guest" />
+          <NavigationProperty Name="FolioDetails" Relationship="Self.FK_FolioDetails_Folio" FromRole="Folio" ToRole="FolioDetails" />
+        </EntityType>
+        <EntityType Name="FolioDetail">
+          <Key>
+            <PropertyRef Name="FolioDetailID" />
+          </Key>
+          <Property Name="FolioDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FolioID" Type="Int32" Nullable="false" />
+          <Property Name="FolioDetailRoomID" Type="Int32" />
+          <Property Name="FolioDetailRoomRateID" Type="Int32" />
+          <Property Name="FolioDetailAddedBy" Type="Int32" />
+          <Property Name="FolioDetailAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="FolioDetailEditedBy" Type="Int32" />
+          <Property Name="FolioDetailEditedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Folio" Relationship="Self.FK_FolioDetails_Folio" FromRole="FolioDetails" ToRole="Folio" />
+          <NavigationProperty Name="RoomRate" Relationship="Self.FK_FolioDetails_RoomRates" FromRole="FolioDetails" ToRole="RoomRates" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_FolioDetails_Rooms" FromRole="FolioDetails" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuestTitle" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GuestFirstName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GuestMiddleName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="GuestLastName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GuestGender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GuestEmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GuestHandPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GuestTelPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GuestFaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GuestIDType" Type="Int32" />
+          <Property Name="GuestIDTypeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GuestAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="GuestCountryID" Type="Int32" />
+          <Property Name="GuestAddedBy" Type="Int32" />
+          <Property Name="GuestAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="GuestEditedBy" Type="Int32" />
+          <Property Name="GuestEditedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Folios" Relationship="Self.FK_Folio_Guest" FromRole="Guest" ToRole="Folio" />
+        </EntityType>
+        <EntityType Name="IDType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDAddedBy" Type="Int32" />
+          <Property Name="IDAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="IDEditedBy" Type="Int32" />
+          <Property Name="IDEditedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RoomRate">
+          <Key>
+            <PropertyRef Name="RoomRateID" />
+          </Key>
+          <Property Name="RoomRateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomRateHotelID" Type="Int32" />
+          <Property Name="RoomRateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoomRateDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RoomRateRoomTypeID" Type="Int32" />
+          <Property Name="RoomRateDateStart" Type="DateTime" Precision="3" />
+          <Property Name="RoomRateDateEnd" Type="DateTime" Precision="3" />
+          <Property Name="RoomRateMinNights" Type="Int32" />
+          <Property Name="RoomRateMaxNights" Type="Int32" />
+          <Property Name="RoomRateMinPerson" Type="Int32" />
+          <Property Name="RoomRateMaxPerson" Type="Int32" />
+          <Property Name="RoomRateIsActive" Type="Boolean" />
+          <NavigationProperty Name="FolioDetails" Relationship="Self.FK_FolioDetails_RoomRates" FromRole="RoomRates" ToRole="FolioDetails" />
+          <NavigationProperty Name="RoomType" Relationship="Self.FK_RoomRates_RoomType" FromRole="RoomRates" ToRole="RoomType" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomHotelID" Type="Int32" />
+          <Property Name="RoomCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoomFloor" Type="Int32" />
+          <Property Name="RoomTypeId" Type="Int32" Nullable="false" />
+          <Property Name="RoomStatusId" Type="Int32" Nullable="false" />
+          <Property Name="RoomAddedBy" Type="Int32" />
+          <Property Name="RoomAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="RoomEditedBy" Type="Int32" />
+          <Property Name="RoomEditedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FolioDetails" Relationship="Self.FK_FolioDetails_Rooms" FromRole="Rooms" ToRole="FolioDetails" />
+          <NavigationProperty Name="RoomStatu" Relationship="Self.FK_Rooms_RoomStatus" FromRole="Rooms" ToRole="RoomStatus" />
+          <NavigationProperty Name="RoomType" Relationship="Self.FK_Rooms_RoomType" FromRole="Rooms" ToRole="RoomType" />
+        </EntityType>
+        <EntityType Name="RoomStatu">
+          <Key>
+            <PropertyRef Name="RoomStatusID" />
+          </Key>
+          <Property Name="RoomStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomsStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoomStatusAddedBy" Type="Int32" />
+          <Property Name="RoomStatusAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="RoomStatusEditedBy" Type="Int32" />
+          <Property Name="RoomStatusEditedDate" Type="DateTime" Precision="3" />
+          <Property Name="RoomStatusIsActive" Type="Boolean" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Rooms_RoomStatus" FromRole="RoomStatus" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="RoomType">
+          <Key>
+            <PropertyRef Name="RoomTypeID" />
+          </Key>
+          <Property Name="RoomTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomTypeHotelID" Type="Int32" />
+          <Property Name="RoomTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoomTypeDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RoomTypeAddedBy" Type="Int32" />
+          <Property Name="RoomTypeAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="RoomTypeEditedBy" Type="Int32" />
+          <Property Name="RoomTypeEditedDate" Type="DateTime" Precision="3" />
+          <Property Name="RoomTypeIsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RoomRates" Relationship="Self.FK_RoomRates_RoomType" FromRole="RoomType" ToRole="RoomRates" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Rooms_RoomType" FromRole="RoomType" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Salutation">
+          <Key>
+            <PropertyRef Name="SalutationID" />
+          </Key>
+          <Property Name="SalutationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalutationDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalutationIsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateCountryID" Type="Int32" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK_Cities_States" FromRole="States" ToRole="Cities" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_States_Countries" FromRole="States" ToRole="Countries" />
+          <Property Name="StateAddedBy" Type="Int32" />
+          <Property Name="StateAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="StateEditedBy" Type="Int32" />
+          <Property Name="StateIsActive" Type="Boolean" />
+          <Property Name="StateEditedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPasswordSalt" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UserToken" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UserAddedBy" Type="Int32" />
+          <Property Name="UserAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserEditedBy" Type="Int32" />
+          <Property Name="UserEditedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="UserIsActive" Type="Int64" />
+          <NavigationProperty Name="UserType" Relationship="Self.FK_Users_UserTypes" FromRole="Users" ToRole="UserTypes" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserIsActive" Type="Boolean" />
+          <Property Name="UserAddedBy" Type="Int32" />
+          <Property Name="UserAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserEditedBy" Type="Int32" />
+          <Property Name="UserEditedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_UserTypes" FromRole="UserTypes" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelID" />
+            <PropertyRef Name="HotelName" />
+          </Key>
+          <Property Name="HotelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HotelAltName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Web" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Registration" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TaxID1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TaxID2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LogoFileURL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CheckInTime" Type="Time" Precision="7" />
+          <Property Name="CheckOutTime" Type="Time" Precision="7" />
+          <Property Name="NextDayCutOff" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="RoomChargeType">
+          <Key>
+            <PropertyRef Name="RoomChargeTypeID" />
+          </Key>
+          <Property Name="RoomChargeTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomChargeTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoomChargeTypeAddedBy" Type="Int32" />
+          <Property Name="RoomChargeTypeAddedDate" Type="DateTime" Precision="3" />
+          <Property Name="RoomChargeTypeEditedBy" Type="Int32" />
+          <Property Name="RoomChargeTypeEditedDate" Type="DateTime" Precision="3" />
+          <Property Name="RoomChargeTypeIsActive" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Cities_States">
+          <End Role="States" Type="Self.State" Multiplicity="0..1" />
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="CityStateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_States_Countries">
+          <End Role="Countries" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="States" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="States">
+              <PropertyRef Name="StateCountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Folio_Guest">
+          <End Role="Guest" Type="Self.Guest" Multiplicity="0..1" />
+          <End Role="Folio" Type="Self.Folio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="Folio">
+              <PropertyRef Name="FolioGuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FolioDetails_Folio">
+          <End Role="Folio" Type="Self.Folio" Multiplicity="1" />
+          <End Role="FolioDetails" Type="Self.FolioDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Folio">
+              <PropertyRef Name="FolioID" />
+            </Principal>
+            <Dependent Role="FolioDetails">
+              <PropertyRef Name="FolioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FolioDetails_RoomRates">
+          <End Role="RoomRates" Type="Self.RoomRate" Multiplicity="0..1" />
+          <End Role="FolioDetails" Type="Self.FolioDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomRates">
+              <PropertyRef Name="RoomRateID" />
+            </Principal>
+            <Dependent Role="FolioDetails">
+              <PropertyRef Name="FolioDetailRoomRateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FolioDetails_Rooms">
+          <End Role="Rooms" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="FolioDetails" Type="Self.FolioDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="FolioDetails">
+              <PropertyRef Name="FolioDetailRoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoomRates_RoomType">
+          <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1" />
+          <End Role="RoomRates" Type="Self.RoomRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="RoomTypeID" />
+            </Principal>
+            <Dependent Role="RoomRates">
+              <PropertyRef Name="RoomRateRoomTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooms_RoomStatus">
+          <End Role="RoomStatus" Type="Self.RoomStatu" Multiplicity="1" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStatus">
+              <PropertyRef Name="RoomStatusID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="RoomStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rooms_RoomType">
+          <End Role="RoomType" Type="Self.RoomType" Multiplicity="1" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomType">
+              <PropertyRef Name="RoomTypeID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="RoomTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserTypes">
+          <End Role="UserTypes" Type="Self.UserType" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypes">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CronusEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BusinessSources" EntityType="Self.BusinessSource" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Folios" EntityType="Self.Folio" />
+          <EntitySet Name="FolioDetails" EntityType="Self.FolioDetail" />
+          <EntitySet Name="Guests" EntityType="Self.Guest" />
+          <EntitySet Name="IDTypes" EntityType="Self.IDType" />
+          <EntitySet Name="RoomRates" EntityType="Self.RoomRate" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="RoomStatus" EntityType="Self.RoomStatu" />
+          <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
+          <EntitySet Name="Salutations" EntityType="Self.Salutation" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+          <EntitySet Name="RoomChargeTypes" EntityType="Self.RoomChargeType" />
+          <AssociationSet Name="FK_Cities_States" Association="Self.FK_Cities_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_States_Countries" Association="Self.FK_States_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="States" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Folio_Guest" Association="Self.FK_Folio_Guest">
+            <End Role="Guest" EntitySet="Guests" />
+            <End Role="Folio" EntitySet="Folios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FolioDetails_Folio" Association="Self.FK_FolioDetails_Folio">
+            <End Role="Folio" EntitySet="Folios" />
+            <End Role="FolioDetails" EntitySet="FolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FolioDetails_RoomRates" Association="Self.FK_FolioDetails_RoomRates">
+            <End Role="RoomRates" EntitySet="RoomRates" />
+            <End Role="FolioDetails" EntitySet="FolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FolioDetails_Rooms" Association="Self.FK_FolioDetails_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="FolioDetails" EntitySet="FolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoomRates_RoomType" Association="Self.FK_RoomRates_RoomType">
+            <End Role="RoomType" EntitySet="RoomTypes" />
+            <End Role="RoomRates" EntitySet="RoomRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooms_RoomStatus" Association="Self.FK_Rooms_RoomStatus">
+            <End Role="RoomStatus" EntitySet="RoomStatus" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rooms_RoomType" Association="Self.FK_Rooms_RoomType">
+            <End Role="RoomType" EntitySet="RoomTypes" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserTypes" Association="Self.FK_Users_UserTypes">
+            <End Role="UserTypes" EntitySet="UserTypes" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CronusModelStoreContainer" CdmEntityContainer="CronusEntities">
+          <EntitySetMapping Name="BusinessSources">
+            <EntityTypeMapping TypeName="CronusModel.BusinessSource">
+              <MappingFragment StoreEntitySet="BusinessSource">
+                <ScalarProperty Name="BusinessSourceID" ColumnName="BusinessSourceID" />
+                <ScalarProperty Name="BusinessSourceName" ColumnName="BusinessSourceName" />
+                <ScalarProperty Name="BusinessSourceAddedBy" ColumnName="BusinessSourceAddedBy" />
+                <ScalarProperty Name="BusinessSourceAddedDate" ColumnName="BusinessSourceAddedDate" />
+                <ScalarProperty Name="BusinessSourceEditedBy" ColumnName="BusinessSourceEditedBy" />
+                <ScalarProperty Name="BusinessSourceEditedDate" ColumnName="BusinessSourceEditedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="CronusModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="CityIsActive" ColumnName="CityIsActive" />
+                <ScalarProperty Name="CityEditedDate" ColumnName="CityEditedDate" />
+                <ScalarProperty Name="CityEditedBy" ColumnName="CityEditedBy" />
+                <ScalarProperty Name="CityAddedDate" ColumnName="CityAddedDate" />
+                <ScalarProperty Name="CityAddedBy" ColumnName="CityAddedBy" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityStateID" ColumnName="CityStateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="CronusModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="CountryIsActive" ColumnName="CountryIsActive" />
+                <ScalarProperty Name="CountryEditedDate" ColumnName="CountryEditedDate" />
+                <ScalarProperty Name="CountryEditedBy" ColumnName="CountryEditedBy" />
+                <ScalarProperty Name="CountryAddedDate" ColumnName="CountryAddedDate" />
+                <ScalarProperty Name="CountryAddedBy" ColumnName="CountryAddedBy" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Folios">
+            <EntityTypeMapping TypeName="CronusModel.Folio">
+              <MappingFragment StoreEntitySet="Folio">
+                <ScalarProperty Name="FolioID" ColumnName="FolioID" />
+                <ScalarProperty Name="FolioHotelID" ColumnName="FolioHotelID" />
+                <ScalarProperty Name="FolioCode" ColumnName="FolioCode" />
+                <ScalarProperty Name="FolioGuestID" ColumnName="FolioGuestID" />
+                <ScalarProperty Name="FolioReservationID" ColumnName="FolioReservationID" />
+                <ScalarProperty Name="FolioDateIN" ColumnName="FolioDateIN" />
+                <ScalarProperty Name="FolioDateOUT" ColumnName="FolioDateOUT" />
+                <ScalarProperty Name="FolioNotes" ColumnName="FolioNotes" />
+                <ScalarProperty Name="FolioAddedBy" ColumnName="FolioAddedBy" />
+                <ScalarProperty Name="FolioAddedDate" ColumnName="FolioAddedDate" />
+                <ScalarProperty Name="FolioEditedBy" ColumnName="FolioEditedBy" />
+                <ScalarProperty Name="FolioEditedDate" ColumnName="FolioEditedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FolioDetails">
+            <EntityTypeMapping TypeName="CronusModel.FolioDetail">
+              <MappingFragment StoreEntitySet="FolioDetails">
+                <ScalarProperty Name="FolioDetailID" ColumnName="FolioDetailID" />
+                <ScalarProperty Name="FolioID" ColumnName="FolioID" />
+                <ScalarProperty Name="FolioDetailRoomID" ColumnName="FolioDetailRoomID" />
+                <ScalarProperty Name="FolioDetailRoomRateID" ColumnName="FolioDetailRoomRateID" />
+                <ScalarProperty Name="FolioDetailAddedBy" ColumnName="FolioDetailAddedBy" />
+                <ScalarProperty Name="FolioDetailAddedDate" ColumnName="FolioDetailAddedDate" />
+                <ScalarProperty Name="FolioDetailEditedBy" ColumnName="FolioDetailEditedBy" />
+                <ScalarProperty Name="FolioDetailEditedDate" ColumnName="FolioDetailEditedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guests">
+            <EntityTypeMapping TypeName="CronusModel.Guest">
+              <MappingFragment StoreEntitySet="Guest">
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+                <ScalarProperty Name="GuestTitle" ColumnName="GuestTitle" />
+                <ScalarProperty Name="GuestFirstName" ColumnName="GuestFirstName" />
+                <ScalarProperty Name="GuestMiddleName" ColumnName="GuestMiddleName" />
+                <ScalarProperty Name="GuestLastName" ColumnName="GuestLastName" />
+                <ScalarProperty Name="GuestGender" ColumnName="GuestGender" />
+                <ScalarProperty Name="GuestEmailAddress" ColumnName="GuestEmailAddress" />
+                <ScalarProperty Name="GuestHandPhone" ColumnName="GuestHandPhone" />
+                <ScalarProperty Name="GuestTelPhone" ColumnName="GuestTelPhone" />
+                <ScalarProperty Name="GuestFaxNumber" ColumnName="GuestFaxNumber" />
+                <ScalarProperty Name="GuestIDType" ColumnName="GuestIDType" />
+                <ScalarProperty Name="GuestIDTypeNumber" ColumnName="GuestIDTypeNumber" />
+                <ScalarProperty Name="GuestAddress" ColumnName="GuestAddress" />
+                <ScalarProperty Name="GuestCountryID" ColumnName="GuestCountryID" />
+                <ScalarProperty Name="GuestAddedBy" ColumnName="GuestAddedBy" />
+                <ScalarProperty Name="GuestAddedDate" ColumnName="GuestAddedDate" />
+                <ScalarProperty Name="GuestEditedBy" ColumnName="GuestEditedBy" />
+                <ScalarProperty Name="GuestEditedDate" ColumnName="GuestEditedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IDTypes">
+            <EntityTypeMapping TypeName="CronusModel.IDType">
+              <MappingFragment StoreEntitySet="IDType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDName" ColumnName="IDName" />
+                <ScalarProperty Name="IDAddedBy" ColumnName="IDAddedBy" />
+                <ScalarProperty Name="IDAddedDate" ColumnName="IDAddedDate" />
+                <ScalarProperty Name="IDEditedBy" ColumnName="IDEditedBy" />
+                <ScalarProperty Name="IDEditedDate" ColumnName="IDEditedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomRates">
+            <EntityTypeMapping TypeName="CronusModel.RoomRate">
+              <MappingFragment StoreEntitySet="RoomRates">
+                <ScalarProperty Name="RoomRateID" ColumnName="RoomRateID" />
+                <ScalarProperty Name="RoomRateHotelID" ColumnName="RoomRateHotelID" />
+                <ScalarProperty Name="RoomRateCode" ColumnName="RoomRateCode" />
+                <ScalarProperty Name="RoomRateDescription" ColumnName="RoomRateDescription" />
+                <ScalarProperty Name="RoomRateRoomTypeID" ColumnName="RoomRateRoomTypeID" />
+                <ScalarProperty Name="RoomRateDateStart" ColumnName="RoomRateDateStart" />
+                <ScalarProperty Name="RoomRateDateEnd" ColumnName="RoomRateDateEnd" />
+                <ScalarProperty Name="RoomRateMinNights" ColumnName="RoomRateMinNights" />
+                <ScalarProperty Name="RoomRateMaxNights" ColumnName="RoomRateMaxNights" />
+                <ScalarProperty Name="RoomRateMinPerson" ColumnName="RoomRateMinPerson" />
+                <ScalarProperty Name="RoomRateMaxPerson" ColumnName="RoomRateMaxPerson" />
+                <ScalarProperty Name="RoomRateIsActive" ColumnName="RoomRateIsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="CronusModel.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="RoomHotelID" ColumnName="RoomHotelID" />
+                <ScalarProperty Name="RoomCode" ColumnName="RoomCode" />
+                <ScalarProperty Name="RoomFloor" ColumnName="RoomFloor" />
+                <ScalarProperty Name="RoomTypeId" ColumnName="RoomTypeId" />
+                <ScalarProperty Name="RoomStatusId" ColumnName="RoomStatusId" />
+                <ScalarProperty Name="RoomAddedBy" ColumnName="RoomAddedBy" />
+                <ScalarProperty Name="RoomAddedDate" ColumnName="RoomAddedDate" />
+                <ScalarProperty Name="RoomEditedBy" ColumnName="RoomEditedBy" />
+                <ScalarProperty Name="RoomEditedDate" ColumnName="RoomEditedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomStatus">
+            <EntityTypeMapping TypeName="CronusModel.RoomStatu">
+              <MappingFragment StoreEntitySet="RoomStatus">
+                <ScalarProperty Name="RoomStatusID" ColumnName="RoomStatusID" />
+                <ScalarProperty Name="RoomsStatusName" ColumnName="RoomsStatusName" />
+                <ScalarProperty Name="RoomStatusAddedBy" ColumnName="RoomStatusAddedBy" />
+                <ScalarProperty Name="RoomStatusAddedDate" ColumnName="RoomStatusAddedDate" />
+                <ScalarProperty Name="RoomStatusEditedBy" ColumnName="RoomStatusEditedBy" />
+                <ScalarProperty Name="RoomStatusEditedDate" ColumnName="RoomStatusEditedDate" />
+                <ScalarProperty Name="RoomStatusIsActive" ColumnName="RoomStatusIsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomTypes">
+            <EntityTypeMapping TypeName="CronusModel.RoomType">
+              <MappingFragment StoreEntitySet="RoomType">
+                <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
+                <ScalarProperty Name="RoomTypeHotelID" ColumnName="RoomTypeHotelID" />
+                <ScalarProperty Name="RoomTypeName" ColumnName="RoomTypeName" />
+                <ScalarProperty Name="RoomTypeDescription" ColumnName="RoomTypeDescription" />
+                <ScalarProperty Name="RoomTypeAddedBy" ColumnName="RoomTypeAddedBy" />
+                <ScalarProperty Name="RoomTypeAddedDate" ColumnName="RoomTypeAddedDate" />
+                <ScalarProperty Name="RoomTypeEditedBy" ColumnName="RoomTypeEditedBy" />
+                <ScalarProperty Name="RoomTypeEditedDate" ColumnName="RoomTypeEditedDate" />
+                <ScalarProperty Name="RoomTypeIsActive" ColumnName="RoomTypeIsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salutations">
+            <EntityTypeMapping TypeName="CronusModel.Salutation">
+              <MappingFragment StoreEntitySet="Salutation">
+                <ScalarProperty Name="SalutationID" ColumnName="SalutationID" />
+                <ScalarProperty Name="SalutationDescription" ColumnName="SalutationDescription" />
+                <ScalarProperty Name="SalutationIsActive" ColumnName="SalutationIsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="CronusModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="StateEditedDate" ColumnName="StateEditedDate" />
+                <ScalarProperty Name="StateIsActive" ColumnName="StateIsActive" />
+                <ScalarProperty Name="StateEditedBy" ColumnName="StateEditedBy" />
+                <ScalarProperty Name="StateAddedDate" ColumnName="StateAddedDate" />
+                <ScalarProperty Name="StateAddedBy" ColumnName="StateAddedBy" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCountryID" ColumnName="StateCountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CronusModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CronusModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserPasswordSalt" ColumnName="UserPasswordSalt" />
+                <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+                <ScalarProperty Name="UserLastName" ColumnName="UserLastName" />
+                <ScalarProperty Name="UserMiddleName" ColumnName="UserMiddleName" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserToken" ColumnName="UserToken" />
+                <ScalarProperty Name="UserAddedBy" ColumnName="UserAddedBy" />
+                <ScalarProperty Name="UserAddedDate" ColumnName="UserAddedDate" />
+                <ScalarProperty Name="UserEditedBy" ColumnName="UserEditedBy" />
+                <ScalarProperty Name="UserEditedDate" ColumnName="UserEditedDate" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="CronusModel.UserType">
+              <MappingFragment StoreEntitySet="UserTypes">
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserType1" ColumnName="UserType" />
+                <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+                <ScalarProperty Name="UserAddedBy" ColumnName="UserAddedBy" />
+                <ScalarProperty Name="UserAddedDate" ColumnName="UserAddedDate" />
+                <ScalarProperty Name="UserEditedBy" ColumnName="UserEditedBy" />
+                <ScalarProperty Name="UserEditedDate" ColumnName="UserEditedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="CronusModel.Hotel">
+              <MappingFragment StoreEntitySet="Hotel">
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+                <ScalarProperty Name="HotelAltName" ColumnName="HotelAltName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Web" ColumnName="Web" />
+                <ScalarProperty Name="Registration" ColumnName="Registration" />
+                <ScalarProperty Name="TaxID1" ColumnName="TaxID1" />
+                <ScalarProperty Name="TaxID2" ColumnName="TaxID2" />
+                <ScalarProperty Name="LogoFileURL" ColumnName="LogoFileURL" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="CheckInTime" ColumnName="CheckInTime" />
+                <ScalarProperty Name="CheckOutTime" ColumnName="CheckOutTime" />
+                <ScalarProperty Name="NextDayCutOff" ColumnName="NextDayCutOff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomChargeTypes">
+            <EntityTypeMapping TypeName="CronusModel.RoomChargeType">
+              <MappingFragment StoreEntitySet="RoomChargeType">
+                <ScalarProperty Name="RoomChargeTypeID" ColumnName="RoomChargeTypeID" />
+                <ScalarProperty Name="RoomChargeTypeName" ColumnName="RoomChargeTypeName" />
+                <ScalarProperty Name="RoomChargeTypeAddedBy" ColumnName="RoomChargeTypeAddedBy" />
+                <ScalarProperty Name="RoomChargeTypeAddedDate" ColumnName="RoomChargeTypeAddedDate" />
+                <ScalarProperty Name="RoomChargeTypeEditedBy" ColumnName="RoomChargeTypeEditedBy" />
+                <ScalarProperty Name="RoomChargeTypeEditedDate" ColumnName="RoomChargeTypeEditedDate" />
+                <ScalarProperty Name="RoomChargeTypeIsActive" ColumnName="RoomChargeTypeIsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
